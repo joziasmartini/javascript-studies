@@ -11,11 +11,10 @@ for ( let i = 0 ; i < buttons.length ; i++){
 function playGame(e){
     //Setup player selection
     let playerSelection = e.target.innerText;
-    //Setup a random number to select for computer
-    //Selects a number between 0 and 1
+    //Get a random number between 0 and 1
     let computerSelection = Math.random();
 
-    //If computerSelection is less than .34, computer selects Rock
+    //Check the random number and return a response
     if (computerSelection < .34){
         computerSelection = 'Rock';
     } else if (computerSelection <= .67){
@@ -47,11 +46,7 @@ function playGame(e){
     score.innerHTML = 'Player: [ ' + winnerScores[0]+ ' ] Computer: [ ' + winnerScores[1] + ' ]';
 
     //Output player and computer selections
-    messenger('Player: <strong>' + playerSelection + '</strong> Computer: <strong>' + computerSelection + '</strong><br>' + result);
-}
-
-function messenger(selectionMessage){
-    message.innerHTML = selectionMessage;
+    message.innerHTML= 'Player: <strong>' + playerSelection + '</strong> Computer: <strong>' + computerSelection + '</strong><br>' + result;
 }
 
 function checkWinner(player, computer){

@@ -17,3 +17,7 @@ Binary search tree script made with pug, sass and javascript. <a href="https://c
 
 ## rock-paper-scissors
 Classical game made with pug, sass and javascript. <a href="https://codepen.io/joziasmartini/pen/yLavxmy">Online demo</a>.
+
+<p align="center">
+  <img alt="Rock, Paper, Scissors" src="binary-search-tree/rock-paper-scissors.png"/>
+</p>

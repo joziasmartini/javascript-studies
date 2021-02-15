@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dfa</title>
+</head>
+<body>
+
+    <main>
+        <i class="gg-terminal"></i>
+        <h1 class="title">dfa-gen</h1>
+        <p class="subtitle">Deterministic finite automaton generator</p>
+        <a class="link" id='open-file'>Load file</a>
+        <textarea class="entry" id="open-file-result"></textarea>
+        <p class="paragraph">Result</p>
+        <textarea class="result" id="open-file-result"></textarea>
+        <a class="button" onclick="generate()">Generate</a>
+    </main>
+
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Roboto Mono", monospace;
+        }
+
+        main {
+            margin: 24px auto;
+            max-width: 480px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 35px 50px 50px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            color: #333;
+        }
+
+        .gg-terminal {
+            margin: 8px auto 24px;
+            box-sizing: border-box;
+            position: relative;
+            display: block;
+            transform: scale(var(--ggs, 1.6));
+            width: 24px;
+            height: 20px;
+            border: 2px solid;
+            border-radius: 2px;
+        }
+
+        .gg-terminal::before {
+            border-right: 2px solid;
+            border-bottom: 2px solid;
+            transform: rotate(-45deg);
+            width: 6px;
+            height: 6px;
+            top: 5px;
+            left: 3px;
+        }
+
+        .gg-terminal::after {
+            width: 4px;
+            height: 2px;
+            background: currentColor;
+            top: 10px;
+            left: 11px;
+        }
+
+        .gg-terminal::after,
+        .gg-terminal::before {
+            content: "";
+            display: block;
+            box-sizing: border-box;
+            position: absolute;
+        }
+
+        .title {
+            margin: 0 0 4px 0;
+            text-align: center;
+            font-size: 1.6em;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            margin: 0 0 24px 0;
+            text-align: center;
+            font-size: 0.8em;
+        }
+
+        .paragraph {
+            margin: 10px 0;
+            font-size: 0.8em;
+        }
+
+        .link {
+            margin: 10px 0;
+            font-size: 0.8em;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .entry {
+            padding: 10px;
+            background-color: transparent;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            outline: 0;
+            font-size: 0.8em;
+            min-height: 100px;
+            max-height: 200px;
+            min-width: 379px;
+            max-width: 379px;
+        }
+
+        input {
+            color: #333;
+        }
+
+        .result {
+            padding: 10px;
+            background-color: transparent;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            outline: 0;
+            font-size: 0.8em;
+            min-height: 100px;
+            max-height: 200px;
+            min-width: 379px;
+            max-width: 379px;
+        }
+
+        textarea {
+            color: #333;
+        }
+        
+        .button {
+            margin: 24px auto 0;
+            padding: 6px 12px;
+            border: 0.5px solid #ddd;
+            border-radius: 10px;
+            color: inherit;
+            text-decoration: none;
+            font-size: 0.8em;
+            font-weight: 700;
+            background-color: #fff;
+            transition: 0.5s all;
+        }
+        .button:hover {
+            cursor: pointer;
+            background-color: #3c73eb;
+            border: 1px solid #ddd;
+            color: #fff;
+        }
+    </style>
+
+    <script>
+        //Get the data from input
+        let elementInput = document.querySelector(".entry");
+
+        //Select the result element in html to return data
+        const elementResult = document.querySelector(".result");
+
+        //Variables declaration
+        let word = "";
+        let terminals = ["a", "b", "c"];
+        let notTerminals = ["A", "B", "C"];
+        let fileWords = "";
+
+        //Function that reads file and writes in input
+        document.getElementById('open-file').onclick = function(){
+            openFile(function(txt){
+                document.getElementById('open-file-result').value = txt; 
+                fileWords = txt;
+            });
+        }
+
+        function openFile(callBack) {
+            var element = document.createElement('input');
+            element.setAttribute('type', "file");
+            element.setAttribute('id', "btnOpenFile");
+            element.onchange = function(){
+                readText(this,callBack);
+                document.body.removeChild(this);
+            }
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+        }
+    
+        function readText(filePath,callBack) {
+            var reader;
+            if (window.File && window.FileReader && window.FileList && window.Blob) {
+                reader = new FileReader();
+            } else {
+                alert('The File APIs are not fully supported by your browser. Fallback required.');
+                return false;
+            }
+            var output = "";
+            if(filePath.files && filePath.files[0]) {           
+                reader.onload = function (e) {
+                    output = e.target.result;
+                    callBack(output);
+                };
+                reader.readAsText(filePath.files[0]);
+            }
+            else {
+                return false;
+            }       
+            return true;
+        }
+
+        //Generate function, activated by the generate button
+        function generate() {
+
+            //Get the input imported from file and remove line breaks
+            let elementInputData = elementInput.value.replace(/(\r\n|\n|\r)/gm, "");
+            elementInputData = removeDuplicate(elementInputData);
+            
+            let counter = 0;
+            let prefix = "S ::= ";
+            let lineBreak = " \n"
+
+            //For each character
+            for (let i = 0; i < elementInputData.length; i++) {
+                verifyIfIncluded(elementInputData[i]);
+                elementResult.innerHTML += prefix + elementInputData[i] + lineBreak;
+            }
+        }
+
+        //Remove duplicates from string
+        function removeDuplicate(str) {
+            var result = "";
+            var freq = {};
+            for(let i = 0; i < str.length; i++){
+                let char = str[i];
+                if(freq[char]) {
+                    freq[char]++;      
+                } else {
+                    freq[char] = 1;
+                    result = result+char;
+                }
+            }
+            return result;
+        }
+
+        function verifyIfIncluded(character) {
+            let findedCharacter = word.search(character);
+            console.log(findedCharacter);
+
+            if (findedCharacter != -1) {
+                for (let i = 0; i < character.length; i++) {
+                word += character;   
+                console.log(word);             
+                }
+            }
+        }
+    </script>
+    
+</body>
+</html>

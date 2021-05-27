@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="JavaScript Studies Banner" src=".github/javascript-studies.banner.png">
+  <img alt="JavaScript Studies Banner" src=".github/javascript-studies-banner.png">
 </p>
 
 ## color-generator

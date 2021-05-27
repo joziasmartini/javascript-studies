@@ -1,5 +1,6 @@
-# javascript-studies
-A register of my studies and algorithms in javascript.
+<p align="center">
+  <img alt="JavaScript Studies Banner" src=".github/javascript-studies.banner.png">
+</p>
 
 ## color-generator
 A color generator in pug, sass and javascript. <a href="https://codepen.io/joziasmartini/pen/NWrGGYz">Online demo</a>.

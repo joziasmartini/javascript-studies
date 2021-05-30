@@ -1,6 +1,10 @@
+<h1 align="center">JavaScript Studies</h1>
+
 <p align="center">
-  <img alt="JavaScript Studies Banner" src=".github/javascript-studies-banner.png">
+  A register of my studies and algorithms in JavaScript.
 </p>
+
+<br>
 
 ## color-generator
 A color generator in pug, sass and javascript. <a href="https://codepen.io/joziasmartini/pen/NWrGGYz">Online demo</a>.

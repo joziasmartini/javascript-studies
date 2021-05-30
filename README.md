@@ -16,3 +16,6 @@ A automaton that accepts or rejects a given string of symbols.
 
 ## palindrome-checker
 Checks if given string is a palindrome.
+
+## roman-numeral-converter
+Convert numbers to roman numeral.

@@ -13,3 +13,6 @@ Classical game made with pug, sass and javascript. <a href="https://codepen.io/j
 
 ## deterministic-finite-automaton
 A automaton that accepts or rejects a given string of symbols.
+
+## palindrome-checker
+Checks if given string is a palindrome.

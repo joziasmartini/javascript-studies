@@ -34,3 +34,6 @@ Return true if the passed string is a valid US phone number.
 
 ## cash-register
 Cash register drawer function that accepts purchase price (price), payment (cash), and cash-in-drawer (cid) arguments.
+
+## chaostruct-cipher
+Idealized by me, it is an algorithm that encrypts strings by adding chaos variants in vowels.

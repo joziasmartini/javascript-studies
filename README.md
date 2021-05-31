@@ -1,12 +1,8 @@
-<br>
-
 <h1 align="center">JavaScript Studies</h1>
 
 <p align="center">
   A register of my studies and algorithms in JavaScript.
 </p>
-
-<br>
 
 ## color-generator
 A color generator in pug, sass and javascript. <a href="https://codepen.io/joziasmartini/pen/NWrGGYz">Online demo</a>.
@@ -36,4 +32,4 @@ Return true if the passed string is a valid US phone number.
 Cash register drawer function that accepts purchase price (price), payment (cash), and cash-in-drawer (cid) arguments.
 
 ## chaostruct-cipher
-Idealized by me, it is an algorithm that encrypts strings by adding chaos variants in vowels.
+Idealized by me, is an algorithm that encrypts strings by adding chaos variants in vowels.

@@ -25,3 +25,6 @@ Checks if given string is a palindrome.
 
 ## roman-numeral-converter
 Convert numbers to roman numeral.
+
+## caesars-cipher
+Takes a ROT13 encoded string as input and returns a decoded string.

@@ -28,3 +28,6 @@ Convert numbers to roman numeral.
 
 ## caesars-cipher
 Takes a ROT13 encoded string as input and returns a decoded string.
+
+## telephone-number-validator
+Return true if the passed string is a valid US phone number.

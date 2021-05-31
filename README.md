@@ -31,3 +31,6 @@ Takes a ROT13 encoded string as input and returns a decoded string.
 
 ## telephone-number-validator
 Return true if the passed string is a valid US phone number.
+
+## cash-register
+Cash register drawer function that accepts purchase price (price), payment (cash), and cash-in-drawer (cid) arguments.
